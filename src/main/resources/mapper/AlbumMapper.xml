@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.small.mapper.AlbumMapper">
+
+    <!-- int insert(Album album); -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO pms_album (
+            name, description, sort
+        ) VALUES (
+                     #{name}, #{description}, #{sort}
+                 )
+    </insert>
+
+    <!-- int insertBatch(List<Album> albumList); -->
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO pms_album (
+        name, description, sort
+        ) VALUES
+        <foreach collection="list" item="album" separator=",">
+            (#{album.name}, #{album.description}, #{album.sort})
+        </foreach>
+    </insert>
+
+    <!-- int deleteById(Long id); -->
+    <delete id="deleteById">
+        DELETE FROM pms_album WHERE id=#{id}
+    </delete>
+
+    <!-- int deleteByIds(Long[] ids); -->
+    <delete id="deleteByIds">
+        DELETE FROM pms_album WHERE id IN (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
+    <!-- int update(Album album); -->
+    <update id="update">
+        UPDATE pms_album
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="description != null">
+                description=#{description},
+            </if>
+            <if test="sort != null">
+                sort=#{sort},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!-- int count(); -->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pms_album
+    </select>
+
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_album WHERE name=#{name}
+    </select>
+
+    <!-- int countByNameAndNotId(@Param("id") Long id, @Param("name") String name); -->
+    <select id="countByNameAndNotId" resultType="int">
+        SELECT count(*) FROM pms_album WHERE name=#{name} AND id!=#{id}
+    </select>
+
+
+
+</mapper>
