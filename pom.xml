@@ -37,6 +37,7 @@
             <scope>runtime</scope>
         </dependency>
         <!-- Lombok的依赖项，主要用于简化POJO类的编写 -->
+        <!-- 添加了Lombok后，在任何类的声明之前，添加@Slf4j注解，则编译期会自动声明一个名为log的变量，所以，可以在类中通过此变量来输出日志。 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

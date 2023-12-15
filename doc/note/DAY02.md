@@ -290,11 +290,24 @@ private static Logger logger = LoggerFactory.getLogger(Slf4jTests.class);
 例如，在`application-dev.yml`添加配置（另外，你可以在其它Profile配置中为日志的显示级别配置不同的值）：
 
 ```yaml
+#实际尝试无效
 logging:
   level:
     cn.tedu.csmall: trace
+#加载Spring Boot的情况下，日志的默认显示级别是info，只会显示此级别及更加重要的级别的日志info.warn,error
+#为了所有日志都现在，包括trace(跟踪日志)，debug (调试日志)
+#实际尝试有效
+logging:
+  level:
+    com.luoyang.small: TRACE
 ```
+```properties
+#加载Spring Boot的情况下，日志的默认显示级别是info，只会显示此级别及更加重要的级别的日志info.warn,error
+#为了所有日志都现在，包括trace(跟踪日志)，debug (调试日志)
+#实际尝试有效
+logging.level.com.luoyang.small=TRACE
 
+```
 **提示：**当配置包名时，不必把包名配置得特别具体，可以作用于其子孙包下所有的类，但是，必须至少配置1级包名，例如配置到`cn`这一级包，不可以完全不配置包名，需要注意，当前项目中添加的所有依赖项，也是当前项目的一部分，不应该将包名配置得过于简单，例如只使用`cn`作为配置的包名。
 
 **提示：**Mybatis框架会生成各Mapper接口的对象，这些对象在执行SQL语句时，也会输出日志，是`trace`和`info`级别的日志，当把日志的显示级别设置为较低的级别时，可以看到这些日志。

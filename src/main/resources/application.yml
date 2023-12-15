@@ -2,3 +2,10 @@
 mybatis:
   # 配置SQL语句的XML文件所在的位置
   mapper-locations: classpath:mapper/*.xml
+
+#加载Spring Boot的情况下，日志的默认显示级别是info，只会显示此级别及更加重要的级别的日志info.warn,error
+#为了所有日志都现在，包括trace(跟踪日志)，debug (调试日志)
+#实际尝试有效
+logging:
+  level:
+    com.luoyang.small: trace
