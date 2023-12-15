@@ -1,6 +1,9 @@
 package com.luoyang.small.service;
 
 import com.luoyang.small.pojo.dto.AlbumAddNewDTO;
+import com.luoyang.small.pojo.entity.Album;
+
+import java.util.List;
 
 /**
  * 添加相册接口
@@ -10,4 +13,10 @@ import com.luoyang.small.pojo.dto.AlbumAddNewDTO;
  */
 public interface IAlbumService {
     void addNew(AlbumAddNewDTO albumAddNewDTO);
+
+    void deleteAlbum(String name);
+
+    void updateAlbum(AlbumAddNewDTO albumAddNewDTO);
+
+    List<Album> selectAllAlbum();
 }

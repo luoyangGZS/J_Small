@@ -6,39 +6,28 @@
 
     <!-- int insert(Album album); -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO pms_album (
-            name, description, sort
-        ) VALUES (
-                     #{name}, #{description}, #{sort}
-                 )
+        INSERT INTO pms_album (name, description, sort)
+        VALUES (#{name}, #{description}, #{sort})
     </insert>
 
-    <!-- int insertBatch(List<Album> albumList); -->
-    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO pms_album (
-        name, description, sort
-        ) VALUES
-        <foreach collection="list" item="album" separator=",">
-            (#{album.name}, #{album.description}, #{album.sort})
-        </foreach>
-    </insert>
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*)
+        FROM pms_album
+        WHERE name = #{name}
+    </select>
 
-    <!-- int deleteById(Long id); -->
-    <delete id="deleteById">
-        DELETE FROM pms_album WHERE id=#{id}
+
+    <!-- int deleteByName(String name); -->
+    <delete id="deleteByName">
+        DELETE
+        FROM pms_album
+        WHERE name = #{name}
     </delete>
 
-    <!-- int deleteByIds(Long[] ids); -->
-    <delete id="deleteByIds">
-        DELETE FROM pms_album WHERE id IN (
-        <foreach collection="array" item="id" separator=",">
-            #{id}
-        </foreach>
-        )
-    </delete>
 
     <!-- int update(Album album); -->
-    <update id="update">
+    <update id="updateByName" parameterType="com.luoyang.small.pojo.entity.Album">
         UPDATE pms_album
         <set>
             <if test="name != null">
@@ -51,24 +40,13 @@
                 sort=#{sort},
             </if>
         </set>
-        WHERE id=#{id}
+        WHERE name=#{name}
     </update>
 
-    <!-- int count(); -->
-    <select id="count" resultType="int">
-        SELECT count(*) FROM pms_album
+
+    <select id="selectAll" resultType="com.luoyang.small.pojo.entity.Album">
+        SELECT id, name, description, sort
+        FROM pms_album
     </select>
-
-    <!-- int countByName(String name); -->
-    <select id="countByName" resultType="int">
-        SELECT count(*) FROM pms_album WHERE name=#{name}
-    </select>
-
-    <!-- int countByNameAndNotId(@Param("id") Long id, @Param("name") String name); -->
-    <select id="countByNameAndNotId" resultType="int">
-        SELECT count(*) FROM pms_album WHERE name=#{name} AND id!=#{id}
-    </select>
-
-
 
 </mapper>

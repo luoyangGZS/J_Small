@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.luoyang.small.mapper")
 public class MybatisConfiguration {
     public MybatisConfiguration() {
+        log.trace("创建配置类对象：MybatisConfiguration");
         log.debug("创建配置类对象：MybatisConfiguration");
         log.info("创建配置类对象：MybatisConfiguration");
     }

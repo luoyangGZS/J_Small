@@ -16,6 +16,9 @@ public class SmallApplication {
         log.debug("debug初始化启动类：SmallApplication");
         log.info("info初始化启动类：SmallApplication");
         SpringApplication.run(SmallApplication.class, args);
+        log.trace("trace初始化启动类111：SmallApplication");
+        log.debug("debug初始化启动类111：SmallApplication");
+        log.info("info初始化启动类111：SmallApplication");
     }
 
 }
