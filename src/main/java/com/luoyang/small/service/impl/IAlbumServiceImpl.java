@@ -32,7 +32,7 @@ public class IAlbumServiceImpl implements IAlbumService {
         int countByName = albumMapper.countByName(name);
         //如果数据已存在还继续插入，我们这边直接报异常，不添加。
         if (countByName > 0) {
-            throw new RuntimeException();
+            throw new RuntimeException("相册名称已经被占用1111");
         }
 
         //创建Album对象
