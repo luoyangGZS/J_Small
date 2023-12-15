@@ -3,6 +3,7 @@ package com.luoyang.small;
 
 import com.luoyang.small.mapper.AlbumMapper;
 import com.luoyang.small.pojo.entity.Album;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author luoyang
  * @date 2023/11/28
  */
+@Slf4j
 @SpringBootTest
 public class AlbumMapperTests {
 
@@ -26,6 +28,13 @@ public class AlbumMapperTests {
 
         int rows = mapper.insert(album);
         System.out.println("插入数据完成，受影响的行数：" + rows);
+    }
+
+    @Test
+    void countByName(){
+        String name = "测试名称001";
+        int count = mapper.countByName(name);
+        log.debug("根据名称【{}】统计梳理完成，结果：{}",name,count);
     }
 
 }

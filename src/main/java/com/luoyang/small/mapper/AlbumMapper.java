@@ -23,6 +23,15 @@ public interface AlbumMapper {
      */
     int insert(Album album);
 
+
+    /**
+     * 根据相册名称统计数据的数量
+     *
+     * @param name 相册名称
+     * @return 匹配名称的相册数据的数量
+     */
+    int countByName(String name);
+
     /**
      * 批量插入相册数据
      *
@@ -62,13 +71,6 @@ public interface AlbumMapper {
      */
     int count();
 
-    /**
-     * 根据相册名称统计数据的数量
-     *
-     * @param name 相册名称
-     * @return 匹配名称的相册数据的数量
-     */
-    int countByName(String name);
 
     /**
      * 统计非某id但名称匹配的相册数据的数量，用于检查是否存在其它数据使用了相同的名称
