@@ -1,5 +1,6 @@
 package com.luoyang.small.service.impl;
 
+import com.luoyang.small.ex.CustomServiceException;
 import com.luoyang.small.mapper.AlbumMapper;
 import com.luoyang.small.pojo.dto.AlbumAddNewDTO;
 import com.luoyang.small.pojo.entity.Album;

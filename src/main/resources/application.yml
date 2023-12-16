@@ -9,3 +9,14 @@ mybatis:
 logging:
   level:
     com.luoyang.small: trace
+
+# Knife4j配置
+knife4j:
+  # 开启增强模式 ,Spring 将使用bean来满足注入点的依赖关系
+  enable: true
+
+#解决Cannot invoke "PatternsRequestCondition.getPatterns()"
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
