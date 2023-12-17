@@ -16,7 +16,14 @@ knife4j:
   enable: true
 
 #解决Cannot invoke "PatternsRequestCondition.getPatterns()"
+# Spring相关配置
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+  # jackson框架的相关配置
+  jackson:
+    # 服务器端响应JSON结果时，JSON结果中默认包含哪些属性
+    #json所有属性为空是都不展示对应属性
+    default-property-inclusion: non_null

@@ -5,6 +5,7 @@ import com.luoyang.small.mapper.AlbumMapper;
 import com.luoyang.small.pojo.dto.AlbumAddNewDTO;
 import com.luoyang.small.pojo.entity.Album;
 import com.luoyang.small.service.IAlbumService;
+import com.luoyang.small.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class IAlbumServiceImpl implements IAlbumService {
         int countByName = albumMapper.countByName(name);
         //如果数据已存在还继续插入，我们这边直接报异常，不添加。
         if (countByName > 0) {
-            throw new CustomServiceException("相册名称已经被占用，新增失败");
+            throw new CustomServiceException(ServiceCode.ERR_CUSTOM, "相册名称已经被占用，新增失败");
         }
 
         //创建Album对象
@@ -63,7 +64,7 @@ public class IAlbumServiceImpl implements IAlbumService {
         int countByName = albumMapper.countByName(name);
         //如果数据已存在还继续插入，我们这边直接报异常，不添加。
         if (countByName <= 0) {
-            throw new CustomServiceException("该相册不存在");
+            throw new CustomServiceException(ServiceCode.ERR_CUSTOM, "该相册不存在");
         }
 
         //创建Album对象
